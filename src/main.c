@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/15 19:24:56 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/15 19:25:46 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ pipex()
 			close(end[i][0]);
 			dup2(end[i][1], STDOUT_FILENO);
 			close(end[i][1]);
-			paths
+			get paths
 			cmd = ft_split(argv[2], ' ');
 			execve;
 		}
@@ -63,5 +63,6 @@ int	main(int ac, char **av, char **envp)
 	{
 		pipex();
 	}
+	free_all();
 	return (0);
 }
