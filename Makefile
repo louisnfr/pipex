@@ -6,7 +6,7 @@
 #    By: lraffin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 04:32:29 by lraffin           #+#    #+#              #
-#    Updated: 2021/09/15 16:01:05 by lraffin          ###   ########.fr        #
+#    Updated: 2021/09/18 01:39:20 by lraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC_PATH	= src
 OBJ_PATH	= obj
 
 ### SOURCE FILES ###
-SOURCES = main.c
+SOURCES = main.c \
+		parsing.c
 
 ### OBJECTS ###
 SRC	= $(addprefix $(SRC_PATH)/,$(SOURCES))
@@ -48,7 +49,7 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)$@$(NOC)"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDE)/$(NAME).h
-	@mkdir -p obj/actions obj/exit obj/sort obj/parsing obj/init obj/lists
+	@mkdir -p obj
 	@$(CC) $(FLAGS) -I$(INCLUDE) -c -o $@ $<
 	@echo "$(BLUE)clang $(WHITE)$(notdir $@)$(NOC)"
 
