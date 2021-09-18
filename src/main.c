@@ -6,19 +6,22 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 03:44:25 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/18 03:54:46 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+// MISSING ERROR HANDLING
+// PROTECT STRJOIN
 
 void	child_process(t_pipex *p)
 {
 	char	*cmd;
 	int		i;
 
-	dup2(p->f1, STDIN_FILENO);
-	dup2(p->end[1], STDOUT_FILENO);
+	if (dup2(p->f1, STDIN_FILENO) < 0 || dup2(p->end[1], STDOUT_FILENO) < 0)
+		terminate("child dup failed", p);
 	close(p->end[0]);
 	close(p->f1);
 	i = -1;
@@ -28,7 +31,7 @@ void	child_process(t_pipex *p)
 		execve(cmd, p->cmd1, p->envp);
 		free(cmd);
 	}
-	exit(EXIT_FAILURE);
+	terminate("command not found", p);
 }
 
 void	parent_process(t_pipex *p)
@@ -38,8 +41,8 @@ void	parent_process(t_pipex *p)
 	int		i;
 
 	waitpid(-1, &status, 0);
-	dup2(p->f2, STDOUT_FILENO);
-	dup2(p->end[0], STDIN_FILENO);
+	if (dup2(p->f2, STDOUT_FILENO) < 0 || dup2(p->end[0], STDIN_FILENO) < 0)
+		terminate("parent dup failed", p);
 	close(p->end[1]);
 	close(p->f2);
 	i = -1;
@@ -49,7 +52,7 @@ void	parent_process(t_pipex *p)
 		execve(cmd, p->cmd2, p->envp);
 		free(cmd);
 	}
-	exit(EXIT_FAILURE);
+	terminate("command not found", p);
 }
 
 void	pipex(t_pipex *p)
@@ -57,7 +60,7 @@ void	pipex(t_pipex *p)
 	pid_t	pid;
 
 	if (pipe(p->end) == -1)
-		exit(EXIT_FAILURE);
+		return (perror("pipe: "));
 	pid = fork();
 	if (pid < 0)
 		return (perror("fork: "));

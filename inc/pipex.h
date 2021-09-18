@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:05:40 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 03:39:08 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/18 03:49:13 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ typedef struct s_pipex
 
 t_pipex	*init_pipex(int ac, char **av, char **envp);
 void	get_paths(t_pipex *p);
+void	terminate(char *error, t_pipex *p);
 
 #endif
