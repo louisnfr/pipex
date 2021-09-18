@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 02:07:31 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/18 02:14:58 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_pipex	*px;
 
-	if (ac != 5)
-		return (-1);
-	px = malloc(sizeof(t_pipex));
-	px->envp = envp;
-	get_paths(px);
-	for(int q=0; px->paths[q]; q++)
-		printf("px->paths[%d]: %s\n", q, px->paths[q]);
-	px->av = av;
-	px->f1 = open(av[1], O_RDONLY);
-	px->f2 = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (px->f1 < 0 || px->f2 < 0)
-		return (-1);
+	px = init_pipex(ac, av, envp);
 	// pipex(px);
 	free(px);
 	return (0);

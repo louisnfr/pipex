@@ -6,7 +6,7 @@
 #    By: lraffin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 04:32:29 by lraffin           #+#    #+#              #
-#    Updated: 2021/09/18 01:39:20 by lraffin          ###   ########.fr        #
+#    Updated: 2021/09/18 02:09:23 by lraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJ_PATH	= obj
 
 ### SOURCE FILES ###
 SOURCES = main.c \
+		utils.c \
 		parsing.c
 
 ### OBJECTS ###
