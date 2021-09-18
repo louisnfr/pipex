@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:05:40 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 01:26:21 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/18 02:04:55 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@
 
 typedef struct s_pipex
 {
+	char	**paths;
 	char	**envp;
-	char	*path;
+	char	**av;
 	int		f1;
 	int 	f2;
 }	t_pipex;
 
-char	*get_path(char **envp);
+void	get_paths(t_pipex *px);
 
 #endif
