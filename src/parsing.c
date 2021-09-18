@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 01:21:28 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 03:14:13 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/18 03:45:40 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,3 @@ void	get_paths(t_pipex *p)
 	path = ft_substr(p->envp[i], 5, ft_strlen(p->envp[i]));
 	p->paths = ft_split(path, ':');
 }
-
-
