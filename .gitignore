@@ -34,6 +34,7 @@ help.c
 *.dylib
 
 # Executables
+pipex
 *.exe
 *.out
 *.app
