@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 02:09:06 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 02:20:01 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/18 03:25:28 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 t_pipex	*init_pipex(int ac, char **av, char **envp)
 {
-	t_pipex	*px;
+	t_pipex	*p;
 
 	if (ac != 5)
 		exit (EXIT_FAILURE);
-	px = malloc(sizeof(t_pipex));
-	px->envp = envp;
-	px->av = av;
-	px->f1 = open(av[1], O_RDONLY);
-	px->f2 = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (px->f1 < 0 || px->f2 < 0)
+	p = malloc(sizeof(t_pipex));
+	if (p->f1 < 0 || p->f2 < 0)
 	{
-		free(px);
+		free(p);
 		exit(EXIT_FAILURE);
 	}
-	get_paths(px);
-	return (px);
+	p->cmd1 = ft_split(av[2], ' ');
+	p->cmd2 = ft_split(av[3], ' ');
+	p->envp = envp;
+	p->av = av;
+	p->f1 = open(av[1], O_RDONLY);
+	p->f2 = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	get_paths(p);
+	return (p);
 }
