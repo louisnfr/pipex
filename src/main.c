@@ -28,10 +28,14 @@ void	child_process(t_pipex *p)
 	while (p->paths[++i])
 	{
 		cmd = ft_strjoin(ft_strjoin(p->paths[i], "/"), p->av[2]);
-		execve(cmd, p->cmd1, p->envp);
+		if (execve(cmd, p->cmd1, p->envp) < 0)
+		{
+			free(cmd);
+			terminate("execve error\n", p);
+		}
 		free(cmd);
 	}
-	terminate("first command not found\n", p);
+	terminate("command not found\n", p);
 }
 
 void	parent_process(t_pipex *p)
@@ -52,7 +56,7 @@ void	parent_process(t_pipex *p)
 		execve(cmd, p->cmd2, p->envp);
 		free(cmd);
 	}
-	terminate("second command not found\n", p);
+	terminate("command not found\n", p);
 }
 
 void	pipex(t_pipex *p)
