@@ -21,7 +21,7 @@ void	child_process(t_pipex *p)
 	int		i;
 
 	if (dup2(p->f1, STDIN_FILENO) < 0 || dup2(p->end[1], STDOUT_FILENO) < 0)
-		terminate("child dup failed", p);
+		terminate("child dup failed\n", p);
 	close(p->end[0]);
 	close(p->f1);
 	i = -1;
@@ -31,7 +31,7 @@ void	child_process(t_pipex *p)
 		execve(cmd, p->cmd1, p->envp);
 		free(cmd);
 	}
-	terminate("command not found", p);
+	terminate("first command not found\n", p);
 }
 
 void	parent_process(t_pipex *p)
@@ -42,17 +42,17 @@ void	parent_process(t_pipex *p)
 
 	waitpid(-1, &status, 0);
 	if (dup2(p->f2, STDOUT_FILENO) < 0 || dup2(p->end[0], STDIN_FILENO) < 0)
-		terminate("parent dup failed", p);
+		terminate("parent dup failed\n", p);
 	close(p->end[1]);
 	close(p->f2);
 	i = -1;
 	while (p->paths[++i])
 	{
-		cmd = ft_strjoin(ft_strjoin(p->paths[i], "/"), p->av[2]);
+		cmd = ft_strjoin(ft_strjoin(p->paths[i], "/"), p->av[3]);
 		execve(cmd, p->cmd2, p->envp);
 		free(cmd);
 	}
-	terminate("command not found", p);
+	terminate("second command not found\n", p);
 }
 
 void	pipex(t_pipex *p)
