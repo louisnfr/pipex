@@ -23,4 +23,5 @@ void	get_paths(t_pipex *p)
 			break ;
 	path = ft_substr(p->envp[i], 5, ft_strlen(p->envp[i]));
 	p->paths = ft_split(path, ':');
+	// si probleme leaks, opt: paths = ft_split(envp[i] + 5, ':');
 }
