@@ -25,14 +25,12 @@ void	child_process(t_pipex *p)
 	close(p->end[0]);
 	close(p->f1);
 	i = -1;
+	printf("check\n");
 	while (p->paths[++i])
 	{
 		cmd = ft_strjoin(ft_strjoin(p->paths[i], "/"), p->av[2]);
-		if (execve(cmd, p->cmd1, p->envp) < 0)
-		{
-			free(cmd);
-			terminate("execve error\n", p);
-		}
+		printf("%s\n", cmd);
+		execve(cmd, p->cmd1, p->envp);
 		free(cmd);
 	}
 	terminate("command not found\n", p);
@@ -50,9 +48,11 @@ void	parent_process(t_pipex *p)
 	close(p->end[1]);
 	close(p->f2);
 	i = -1;
+	printf("check\n");
 	while (p->paths[++i])
 	{
 		cmd = ft_strjoin(ft_strjoin(p->paths[i], "/"), p->av[3]);
+		printf("-%s-\n", cmd);
 		execve(cmd, p->cmd2, p->envp);
 		free(cmd);
 	}
