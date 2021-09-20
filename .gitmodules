@@ -1,3 +1,6 @@
 [submodule "libft"]
 	path = libft
 	url = git@github.com:louisnfr/libft.git
+[submodule "pipex-tester"]
+	path = pipex-tester
+	url = git@github.com:vfurmane/pipex-tester.git
