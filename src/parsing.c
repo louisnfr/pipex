@@ -6,22 +6,31 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 01:21:28 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 03:45:40 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/20 23:47:50 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_paths(t_pipex *p)
+char	*path(char *cmd, char **envp)
 {
+	char	**paths;
 	char	*path;
 	int		i;
 
-	i = -1;
-	while (p->envp[++i])
-		if (ft_strnstr(p->envp[i], "PATH=", 5))
-			break ;
-	path = ft_substr(p->envp[i], 5, ft_strlen(p->envp[i]));
-	p->paths = ft_split(path, ':');
-	// si probleme leaks, opt: paths = ft_split(envp[i] + 5, ':');
+	i = 0;
+	while (!ft_strnstr(envp[i], "PATH", 4))
+		i++;
+	paths = ft_split(envp[i] + 5, ':');
+	i = 0;
+	while (paths[i])
+	{
+		path = ft_strjoin(ft_strjoin(paths[i], "/"), cmd);
+		if (!access(path, F_OK))
+			return (path);
+		free(path);
+		i++;
+	}
+	free_split(paths, i);
+	return (0);
 }

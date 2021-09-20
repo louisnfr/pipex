@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:05:40 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/20 22:34:12 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/20 23:47:42 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,9 @@
 # include <errno.h>
 # include "libft.h"
 
-typedef struct s_pipex
-{
-	char	**paths;
-	char	**cmd1;
-	char	**cmd2;
-	char	**envp;
-	char	**av;
-	int		end[2];
-	int		f1;
-	int		f2;
-}	t_pipex;
-
-t_pipex	*init_pipex(int ac, char **av, char **envp);
-void	get_paths(t_pipex *p);
-void	terminate(char *error, t_pipex *p);
+char	*path(char *cmd, char **envp);
 void	usage(void);
+void	terminate(char *error);
+void	free_split(char **args, int size);
 
 #endif
