@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 02:09:06 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 03:50:41 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/20 22:42:38 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,18 @@ t_pipex	*init_pipex(int ac, char **av, char **envp)
 	return (p);
 }
 
+void	usage(void)
+{
+	write(2, "usage: ./pipex [file1] [cmd1] [cmd2] [file2]\n", 45);
+	exit(EXIT_FAILURE);
+}
+
 void	terminate(char *error, t_pipex *p)
 {
-	write(2, error, ft_strlen(error));
+	if (errno == 0)
+		write(2, error, ft_strlen(error));
+	else
+		perror(error);
 	free(p);
 	exit(EXIT_FAILURE);
 }
