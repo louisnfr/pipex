@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 01:04:16 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 01:08:12 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int ac, char **av, char **envp)
 		dup2(pipefd[1], STDOUT_FILENO);
 		if (execve(path(cmd[0], envp), cmd, envp) < 0)
 			terminate();
+		free_split(cmd, 2);
+		free(cmd);
 	}
 
 	/* CHILD TWO */
@@ -61,7 +63,9 @@ int	main(int ac, char **av, char **envp)
 		dup2(fd[1], STDOUT_FILENO);
 		dup2(pipefd[0], STDIN_FILENO);
 		if (execve(path(cmd[0], envp), cmd, envp) < 0)
-			printf("check\n");
+			terminate();
+		free_split(cmd, 2);
+		free(cmd);
 	}
 	close(pipefd[0]);
 	close(pipefd[1]);

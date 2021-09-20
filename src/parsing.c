@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 01:21:28 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 01:03:38 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 01:09:08 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ char	*path(char *cmd, char **envp)
 	{
 		path = ft_strjoin(ft_strjoin(paths[i], "/"), cmd);
 		if (!access(path, F_OK))
+		{
+			free_split(paths, i);
 			return (path);
+		}
 		free(path);
 		i++;
 	}
+	free(path);
 	free_split(paths, i);
 	return (0);
 }
