@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/18 03:54:46 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/20 17:31:51 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ int	main(int ac, char **av, char **envp)
 {
 	t_pipex	*p;
 
+	char *salut = malloc(15);
+	(void)salut;
 	p = init_pipex(ac, av, envp);
 	pipex(p);
-	free(p);
+	// free(p);
 	return (0);
 }
