@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 01:08:12 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 14:06:13 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int	main(int ac, char **av, char **envp)
 		close(pipefd[0]);
 		dup2(fd[0], STDIN_FILENO);
 		dup2(pipefd[1], STDOUT_FILENO);
-		if (execve(path(cmd[0], envp), cmd, envp) < 0)
-			terminate();
+		execve(path(cmd[0], envp), cmd, envp);
 		free_split(cmd, 2);
 		free(cmd);
 	}
@@ -62,8 +61,7 @@ int	main(int ac, char **av, char **envp)
 		close(pipefd[1]);
 		dup2(fd[1], STDOUT_FILENO);
 		dup2(pipefd[0], STDIN_FILENO);
-		if (execve(path(cmd[0], envp), cmd, envp) < 0)
-			terminate();
+		execve(path(cmd[0], envp), cmd, envp);
 		free_split(cmd, 2);
 		free(cmd);
 	}
@@ -73,5 +71,5 @@ int	main(int ac, char **av, char **envp)
 	waitpid(-1, &status, 0);
 	waitpid(-1, &status, 0);
 
-	return (12);
+	return (0);
 }
