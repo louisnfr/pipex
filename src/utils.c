@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 02:09:06 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 00:59:41 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 17:22:55 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	usage(void)
 	exit(EXIT_FAILURE);
 }
 
-void	terminate()
+void	terminate(void)
 {
 	if (errno == 0)
 		write(2, "Error\n", 6);
@@ -27,11 +27,22 @@ void	terminate()
 	exit(EXIT_FAILURE);
 }
 
-void	free_split(char **args, int size)
+void	cmd_not_found(char *cmd)
 {
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", 20);
+	exit(EXIT_FAILURE);
+}
+
+void	free_split(char **args)
+{
+	int	size;
 	int	i;
 
 	i = 0;
+	size = 0;
+	while (args[size])
+		size++;
 	while (i < size)
 		free(args[i++]);
 	free(args);

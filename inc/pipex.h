@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:05:40 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 00:59:13 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 17:22:59 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 char	*path(char *cmd, char **envp);
 void	usage(void);
-void	terminate();
-void	free_split(char **args, int size);
+void	terminate(void);
+void	free_split(char **args);
+void	cmd_not_found(char *cmd);
 
 #endif
