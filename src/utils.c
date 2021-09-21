@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 02:09:06 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 17:41:39 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 19:03:18 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	terminate(void)
 	exit(EXIT_FAILURE);
 }
 
-void	cmd_not_found(char *cmd)
+void	cmd_not_found(char **cmd)
 {
-	write(2, cmd, ft_strlen(cmd));
+	write(2, cmd[0], ft_strlen(cmd[0]));
 	write(2, ": command not found\n", 20);
+	free_split(cmd);
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:18:22 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 17:41:29 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 19:03:52 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ void	child_one(int *pipefd, int *fd, char **av, char **envp)
 			free_split(cmd);
 		}
 		else
-		{
-			cmd_not_found(cmd[0]);
-			free_split(cmd);
-		}
+			cmd_not_found(cmd);
 	}
 }
 
@@ -61,10 +58,7 @@ void	child_two(int *pipefd, int *fd, char **av, char **envp)
 			free_split(cmd);
 		}
 		else
-		{
-			cmd_not_found(cmd[0]);
-			free_split(cmd);
-		}
+			cmd_not_found(cmd);
 	}
 }
 
