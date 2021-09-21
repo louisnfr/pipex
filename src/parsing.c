@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 01:21:28 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 19:35:53 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 19:42:14 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*path(char *cmd, char **envp)
 	int		i;
 
 	i = 0;
-	if (cmd[0] == '/')
+	if (ft_strnstr(cmd, "/", ft_strlen(cmd)))
 		return (cmd);
 	paths = get_paths(envp);
 	i = -1;
