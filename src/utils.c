@@ -6,7 +6,7 @@
 /*   By: lraffin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 02:09:06 by lraffin           #+#    #+#             */
-/*   Updated: 2021/09/21 19:03:18 by lraffin          ###   ########.fr       */
+/*   Updated: 2021/09/21 21:17:29 by lraffin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	usage(void)
 	exit(EXIT_FAILURE);
 }
 
-void	terminate(void)
+void	terminate(char *m)
 {
 	if (errno == 0)
 		write(2, "Error\n", 6);
 	else
-		perror("Error");
+		perror(m);
 	exit(EXIT_FAILURE);
 }
 
