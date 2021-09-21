@@ -6,7 +6,7 @@
 #    By: lraffin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 04:32:29 by lraffin           #+#    #+#              #
-#    Updated: 2021/09/18 02:09:23 by lraffin          ###   ########.fr        #
+#    Updated: 2021/09/21 17:41:19 by lraffin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ norm:
 push:
 	git add .
 	git status
-	git commit -m push_swap
+	git commit -m pipex
 	git push
 
 .PHONY:	all clean fclean re norm push
